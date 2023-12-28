@@ -5,3 +5,15 @@
     //Always use discountedPrice for showing price.
 
 
+    import React from "react";
+
+    function Product(){
+       
+    
+        console.log("Home Products")
+        return(
+            <div>Product</div>
+        )
+    }
+    
+    export default Product;
