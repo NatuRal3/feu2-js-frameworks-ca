@@ -29,7 +29,7 @@ function Header (){
 }
 
 function Footer() {
-    return <footer>WE LOVE FEET</footer>;
+    return <footer>WE LOVE THE FOOTER</footer>;
   }
 
   function Layout() {
