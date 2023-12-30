@@ -1,11 +1,13 @@
 //URL
 // https://api.noroff.dev/api/v1/online-shop/
 
+//Source
 const apiSource = "https://api.noroff.dev/api/v1/online-shop/"
 
-export async function listAllItems (): Promise<any>{
+
+
+export async function listItems (): Promise<any>{
   const response = await apiEngine(`${apiSource}`,"GET");
-  console.log(response)
   return response;
 }
 
