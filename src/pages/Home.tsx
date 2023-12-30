@@ -18,6 +18,7 @@
 
 import React, { useEffect, useState } from "react";
 import { listItems } from "../services/apiEngine.tsx";
+import ItemCards from "../components/ItemCards.tsx";
 
 function Home() {
     const [items, setItems] = useState([]);
@@ -26,8 +27,8 @@ function Home() {
         async function fetchData() {
             try {
                 const itemsList = await listItems();
-                setItems(itemsList); // Update state with fetched items
-                console.log(itemsList); // Log the items
+                setItems(itemsList); 
+                console.log(itemsList);
             } catch (error) {
                 console.error("Error fetching items:", error);
             }
@@ -36,7 +37,12 @@ function Home() {
     }, []);
 
     return (
+<div>
+
         <div>HOME</div>
+        <ItemCards items={items}/>
+
+</div>
     );
 }
 
