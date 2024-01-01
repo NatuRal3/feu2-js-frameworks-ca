@@ -16,13 +16,13 @@ function ItemCards({ items }) { // Accept items as a prop
       {items.map((item) => (
         <Col key={item.id}>
           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={item.media} /> {/* Assuming 'media' is the image URL */}
+            <Card.Img variant="top" src={item.imageUrl} /> {/* Assuming 'media' is the image URL */}
             <Card.Body>
               <Card.Title>{item.title}</Card.Title>
               <Card.Text>
                 {item.description} {/* Assuming 'description' is part of your item */}
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">View</Button>
             </Card.Body>
           </Card>
         </Col>
