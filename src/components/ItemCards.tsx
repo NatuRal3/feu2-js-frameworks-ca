@@ -5,10 +5,20 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useNavigate } from 'react-router-dom';
 
 function ItemCards({ items }) { // Accept items as a prop
-  if (!items || items.length === 0) {
+ const navigate = useNavigate();
+ 
+    if (!items || items.length === 0) {
     return <div>No items to display</div>;
+  }
+
+  function handleViewClick(id:string){
+    navigate(`/list/${id}`)
+  }
+  function handleCartClick(id:string){
+
   }
 
   return (
@@ -22,7 +32,8 @@ function ItemCards({ items }) { // Accept items as a prop
               <Card.Text>
                 {item.description} {/* Assuming 'description' is part of your item */}
               </Card.Text>
-              <Button variant="primary">View</Button>
+              <Button onClick={()=> handleViewClick(item.id)} variant="primary">View</Button>
+              <Button onClick={()=> handleCartClick(item.id)} variant="primary">Add to Cart</Button>
             </Card.Body>
           </Card>
         </Col>
