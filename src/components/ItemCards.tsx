@@ -15,7 +15,7 @@ function ItemCards({ items }) { // Accept items as a prop
   }
 
   function handleViewClick(id:string){
-    navigate(`/list/${id}`)
+    navigate(`/product/${id}`)
   }
   function handleCartClick(id:string){
 

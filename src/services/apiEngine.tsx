@@ -4,12 +4,34 @@
 //Source
 const apiSource = "https://api.noroff.dev/api/v1/online-shop/"
 
+//VIEW ITEM
+const itemPath = "product/"
+const apiItemLink = `${apiSource}${itemPath}`
 
 
 export async function listItems (): Promise<any>{
   const response = await apiEngine(`${apiSource}`,"GET");
   return response;
 }
+
+export async function getItem (itemId){
+  const response = await apiEngine(
+`${apiItemLink}${itemId}`,
+"GET"
+  )
+  return response;
+}
+
+
+// export async function getListing(listingId) {
+//   const response = await apiEngine(
+//     `${apiViewListingLink}${listingId}?_seller=true&_bids=true`,
+//     "GET"
+//   );
+
+//   return response;
+// }
+
 
 
 export async function apiEngine(URL, method, body = null) {

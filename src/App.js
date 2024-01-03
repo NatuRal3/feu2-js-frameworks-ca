@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import "./App.css";
 
-import { listAllItems } from "./services/apiEngine.tsx";
 import Layout from "./components/Layout.tsx";
 
 //Pages
@@ -19,7 +18,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/product/:listingId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/contact" element={<Contact />} />
