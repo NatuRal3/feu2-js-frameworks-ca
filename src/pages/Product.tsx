@@ -9,14 +9,34 @@
     import { useParams } from "react-router-dom";
     import { getItem } from "../services/apiEngine.tsx";
 
+    type Review = {
+        id: string;
+        username: string;
+        rating: number;
+        description: string;
+    }
+
+    type Item = {
+        id: string;
+        title: string;
+        description: string;
+        price: number;
+        discountedPrice: number;
+        imageUrl: string;
+        rating: number;
+        tags: string[];
+        reviews: Review[];
+    }
+
+
     function Product(){
         const { itemId } = useParams();
-        const { item, setItem} = useState(null);
+        const [ item, setItem] = useState<Item|null>();
 
         useEffect(() => {
             async function fetchData (){
-                console.log(itemId)
-                const data = await getItem(itemId)
+                const data = await getItem(itemId) as Item
+                console.log(data.price)
                 setItem(data);
             }
             fetchData();

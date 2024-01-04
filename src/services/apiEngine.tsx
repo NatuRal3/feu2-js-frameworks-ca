@@ -5,8 +5,8 @@
 const apiSource = "https://api.noroff.dev/api/v1/online-shop/"
 
 //VIEW ITEM
-const itemPath = "product/"
-const apiItemLink = `${apiSource}${itemPath}`
+
+const apiItemLink = `${apiSource}`
 
 
 export async function listItems (): Promise<any>{
