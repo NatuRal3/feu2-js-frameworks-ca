@@ -15,6 +15,7 @@
 
         useEffect(() => {
             async function fetchData (){
+                console.log(itemId)
                 const data = await getItem(itemId)
                 setItem(data);
             }

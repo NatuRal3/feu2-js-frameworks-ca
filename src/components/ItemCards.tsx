@@ -9,12 +9,13 @@ import { useNavigate } from 'react-router-dom';
 
 function ItemCards({ items }) { // Accept items as a prop
  const navigate = useNavigate();
- 
+ console.log (items)
     if (!items || items.length === 0) {
     return <div>No items to display</div>;
   }
 
-  function handleViewClick(id:string){
+  function handleViewClick(id){
+  
     navigate(`/product/${id}`)
   }
   function handleCartClick(id:string){

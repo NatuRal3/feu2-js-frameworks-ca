@@ -23,15 +23,6 @@ export async function getItem (itemId){
 }
 
 
-// export async function getListing(listingId) {
-//   const response = await apiEngine(
-//     `${apiViewListingLink}${listingId}?_seller=true&_bids=true`,
-//     "GET"
-//   );
-
-//   return response;
-// }
-
 
 
 export async function apiEngine(URL, method, body = null) {
