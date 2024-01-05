@@ -1,20 +1,32 @@
 
 // Export default ItemCards;
-
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 
-function ItemCards({ items }) { // Accept items as a prop
- const navigate = useNavigate();
+
+type Item = {
+  id: string;
+  imageUrl: string;
+  title: string;
+  description: string;
+};
+
+type ItemCardsProps = {
+  items: Item[]; // items is an array of Item objects
+};
+
+function ItemCards({ items }: ItemCardsProps) {
+  const navigate = useNavigate();
  console.log (items)
     if (!items || items.length === 0) {
     return <div>No items to display</div>;
   }
 
-  function handleViewClick(id){
+  function handleViewClick(id:string){
   
     navigate(`/product/${id}`)
   }

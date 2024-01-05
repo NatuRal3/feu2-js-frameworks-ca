@@ -1,24 +1,11 @@
 // List all products
-//Look ahead search filter
+// Look ahead search filter
     // Click on product in search to go to it
 
-// import React from "react";
-// import { listAllItems } from "../services/apiEngine.tsx";
-
-// function Home(){
-   
-
-//     console.log(listAllItems)
-//     return(
-//         <div>HOME</div>
-//     )
-// }
-
-// export default Home;
 
 import React, { useEffect, useState } from "react";
-import { listItems } from "../services/apiEngine.tsx";
-import ItemCards from "../components/ItemCards.tsx";
+import { listItems } from "../services/apiEngine";
+import ItemCards from "../components/ItemCards";
 
 function Home() {
     const [items, setItems] = useState([]);
