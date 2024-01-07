@@ -13,10 +13,11 @@ type Item = {
   imageUrl: string;
   title: string;
   description: string;
+  discountedPrice: string;
 };
 
 type ItemCardsProps = {
-  items: Item[]; // items is an array of Item objects
+  items: Item[];
 };
 
 function ItemCards({ items }: ItemCardsProps) {
@@ -39,11 +40,14 @@ function ItemCards({ items }: ItemCardsProps) {
       {items.map((item) => (
         <Col key={item.id}>
           <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={item.imageUrl} /> {/* Assuming 'media' is the image URL */}
+            <Card.Img variant="top" src={item.imageUrl} />
             <Card.Body>
               <Card.Title>{item.title}</Card.Title>
               <Card.Text>
-                {item.description} {/* Assuming 'description' is part of your item */}
+                {item.description}
+              </Card.Text>
+              <Card.Text>
+                {item.discountedPrice}
               </Card.Text>
               <Button onClick={()=> handleViewClick(item.id)} variant="primary">View</Button>
               <Button onClick={()=> handleCartClick(item.id)} variant="primary">Add to Cart</Button>
