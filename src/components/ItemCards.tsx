@@ -43,9 +43,9 @@ function ItemCards({ items }: ItemCardsProps) {
               <Card.Text>{item.description}</Card.Text>
               <Card.Text>
                 {item.discountedPrice < item.price ? (
-                  <div className="">
+                  <div className="flex coloumn space-evenly">
                     <p className="price-old">{item.price}</p>{" "}
-                    <div>
+                    <div className="flex coloumn">
                       <p className="price-discount">{item.discountedPrice}</p>
                       <div>{campaignPriceCalculator(item.price, item.discountedPrice)}</div>
                     </div>
@@ -54,13 +54,14 @@ function ItemCards({ items }: ItemCardsProps) {
                   <p>{item.discountedPrice}</p>
                 )}
               </Card.Text>
-
-              <Button onClick={() => handleViewClick(item.id)} variant="primary">
-                View
-              </Button>
-              <Button onClick={() => handleCartClick(item.id)} variant="primary">
-                Add to Cart
-              </Button>
+              <div className="flex space-evenly">
+                <Button onClick={() => handleViewClick(item.id)} variant="primary">
+                  View
+                </Button>
+                <Button onClick={() => handleCartClick(item.id)} variant="primary">
+                  Add to Cart
+                </Button>
+              </div>
             </Card.Body>
           </Card>
         </Col>
