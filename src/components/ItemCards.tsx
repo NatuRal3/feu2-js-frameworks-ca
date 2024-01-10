@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 import campaignPriceCalculator from "../tools/campaignPriceCalculator";
+import { addToCart } from "../tools/cartHandler";
 
 type Item = {
   id: string;
@@ -30,7 +31,6 @@ function ItemCards({ items }: ItemCardsProps) {
   function handleViewClick(id: string) {
     navigate(`/product/${id}`);
   }
-  function handleCartClick(id: string) {}
 
   return (
     <Row xs={1} md={3} className="g-4">
@@ -58,7 +58,7 @@ function ItemCards({ items }: ItemCardsProps) {
                 <Button onClick={() => handleViewClick(item.id)} variant="primary">
                   View
                 </Button>
-                <Button onClick={() => handleCartClick(item.id)} variant="primary">
+                <Button onClick={() => addToCart(item)} variant="primary">
                   Add to Cart
                 </Button>
               </div>
