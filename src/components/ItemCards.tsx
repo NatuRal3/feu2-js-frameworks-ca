@@ -23,7 +23,6 @@ type ItemCardsProps = {
 
 function ItemCards({ items }: ItemCardsProps) {
   const navigate = useNavigate();
-  console.log(items);
   if (!items || items.length === 0) {
     return <div>No items to display</div>;
   }
