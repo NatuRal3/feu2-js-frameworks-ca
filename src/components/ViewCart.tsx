@@ -100,14 +100,19 @@ function ViewCart() {
         const item = itemDetails[cartItem.id];
         return (
           <Col key={cartItem.id}>
-            <Card style={{ width: "18rem" }}>
+            <Card style={{ width: "45rem" }}>
               {item && (
                 <>
-                  <Card.Img variant="top" src={item.imageUrl} />
                   <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>{item.description}</Card.Text>
                     <div className="flex space-evenly">
+                      <Card.Title>{item.title}</Card.Title>
+
+                      <Card.Text>In cart {cartItem.counter}</Card.Text>
+                      <Card.Text>Price {item.price}Kr</Card.Text>
+                      <Card.Text>Amount {(cartItem.counter * item.price).toFixed(2)}Kr</Card.Text>
+                    </div>
+
+                    <div className="flex space-evenly " style={{ width: "20rem" }}>
                       <Button onClick={() => handleAddToCart(item)} variant="primary">
                         +
                       </Button>
