@@ -37,4 +37,34 @@ export function addToCart(item: Item) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-export function removeFromCart() {}
+export function decreaseItemQuantity(itemId: string) {
+  // Retrieve the current cart
+  const cartJson = localStorage.getItem("cart");
+  let cart: CartItem[] = cartJson ? JSON.parse(cartJson) : [];
+
+  // Find the item
+  const itemIndex = cart.findIndex((cartItem) => cartItem.id === itemId);
+  if (itemIndex > -1) {
+    // Decrease counter or remove if it's 1
+    if (cart[itemIndex].counter > 1) {
+      cart[itemIndex].counter--;
+    } else {
+      cart.splice(itemIndex, 1);
+    }
+  }
+
+  // Update the cart in local storage
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+export function removeFromCart(itemId: string) {
+  // Retrieve the current cart
+  const cartJson = localStorage.getItem("cart");
+  let cart: CartItem[] = cartJson ? JSON.parse(cartJson) : [];
+
+  // Remove the item with the specified ID
+  cart = cart.filter((cartItem) => cartItem.id !== itemId);
+
+  // Update the cart in local storage
+  localStorage.setItem("cart", JSON.stringify(cart));
+}

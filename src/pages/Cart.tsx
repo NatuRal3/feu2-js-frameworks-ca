@@ -2,14 +2,9 @@
 // Button to checout - > Checkout success checkout.tsx
 
 import React from "react";
-
-function Cart(){
-   
-
-    console.log("Home Cart")
-    return(
-        <div>Cart</div>
-    )
+import ViewCart from "../components/ViewCart";
+function Cart() {
+  return <ViewCart />;
 }
 
 export default Cart;
