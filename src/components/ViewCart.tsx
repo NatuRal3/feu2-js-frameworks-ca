@@ -50,7 +50,6 @@ function ViewCart() {
 
   function handleAddToCart(item: Item) {
     addToCart(item);
-    // Check if the item is already in the cart and update the counter
     const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
     if (isItemInCart) {
       const updatedItems = cartItems.map((cartItem) => {
@@ -61,10 +60,8 @@ function ViewCart() {
       });
       setCartItems(updatedItems);
     } else {
-      // Add new item to the cart
       setCartItems([...cartItems, { id: item.id, counter: 1 }]);
     }
-    // No need to update local storage here as addToCart already does it
   }
 
   function handleDecreaseQuantityClick(cartItem: CartItem) {
@@ -96,47 +93,49 @@ function ViewCart() {
 
   return (
     <Row xs={1} md={3} className="g-4">
-      {cartItems.map((cartItem) => {
-        const item = itemDetails[cartItem.id];
-        return (
-          <Col key={cartItem.id}>
-            <Card style={{ width: "45rem" }}>
-              {item && (
-                <>
-                  <Card.Body>
-                    <div className="flex space-evenly">
-                      <Card.Title>{item.title}</Card.Title>
+      <div>
+        {cartItems.map((cartItem) => {
+          const item = itemDetails[cartItem.id];
+          return (
+            <Col key={cartItem.id}>
+              <Card style={{ width: "45rem" }}>
+                {item && (
+                  <>
+                    <Card.Body>
+                      <div className="flex space-evenly">
+                        <Card.Title>{item.title}</Card.Title>
 
-                      <Card.Text>In cart {cartItem.counter}</Card.Text>
-                      <Card.Text>Price {item.price}Kr</Card.Text>
-                      <Card.Text>Amount {(cartItem.counter * item.price).toFixed(2)}Kr</Card.Text>
-                    </div>
+                        <Card.Text>In cart {cartItem.counter}</Card.Text>
+                        <Card.Text>Price {item.price}Kr</Card.Text>
+                        <Card.Text>Amount {(cartItem.counter * item.price).toFixed(2)}Kr</Card.Text>
+                      </div>
 
-                    <div className="flex space-evenly " style={{ width: "20rem" }}>
-                      <Button onClick={() => handleAddToCart(item)} variant="primary">
-                        +
-                      </Button>
+                      <div className="flex space-evenly " style={{ width: "20rem" }}>
+                        <Button onClick={() => handleAddToCart(item)} variant="primary">
+                          +
+                        </Button>
 
-                      <Button
-                        onClick={() => handleDecreaseQuantityClick(cartItem)}
-                        variant="secondary"
-                      >
-                        -
-                      </Button>
-                      <Button onClick={() => handleRemoveClick(cartItem)} variant="danger">
-                        Remove
-                      </Button>
-                      <Button onClick={() => handleViewClick(cartItem.id)} variant="primary">
-                        View
-                      </Button>
-                    </div>
-                  </Card.Body>
-                </>
-              )}
-            </Card>
-          </Col>
-        );
-      })}
+                        <Button
+                          onClick={() => handleDecreaseQuantityClick(cartItem)}
+                          variant="secondary"
+                        >
+                          -
+                        </Button>
+                        <Button onClick={() => handleRemoveClick(cartItem)} variant="danger">
+                          Remove
+                        </Button>
+                        <Button onClick={() => handleViewClick(cartItem.id)} variant="primary">
+                          View
+                        </Button>
+                      </div>
+                    </Card.Body>
+                  </>
+                )}
+              </Card>
+            </Col>
+          );
+        })}
+      </div>
     </Row>
   );
 }

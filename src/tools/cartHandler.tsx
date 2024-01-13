@@ -23,7 +23,6 @@ export function addToCart(item: Item) {
   const cartJson = localStorage.getItem("cart");
   let cart: CartItem[] = cartJson ? JSON.parse(cartJson) : [];
 
-  // Is item in cart
   const itemInCartCheck = cart.findIndex((cartItem: CartItem) => cartItem.id === item.id);
   if (itemInCartCheck > -1) {
     // If item exist

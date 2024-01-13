@@ -3,8 +3,9 @@
 
 import React, { useState, useEffect } from "react";
 import ViewCart from "../components/ViewCart";
-import { getItem } from "../services/apiEngine";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
+import { calculateTotal } from "../tools/totalPriceCalculator";
 
 type CartItem = {
   id: string;
@@ -13,31 +14,28 @@ type CartItem = {
 
 function Cart() {
   const [total, setTotal] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function calculateTotal() {
+    async function fetchTotal() {
       const cartItems: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
-      const itemDetails = await Promise.all(cartItems.map((cartItem) => getItem(cartItem.id)));
-
-      const totalCost = itemDetails.reduce((sum, item, index) => {
-        const quantity = cartItems[index].counter;
-        return sum + item.price * quantity;
-      }, 0);
-
+      const totalCost = await calculateTotal(cartItems);
       setTotal(totalCost);
     }
 
-    calculateTotal();
+    fetchTotal();
   }, []);
 
-  function handleCheckoutClick() {}
+  function handleCheckoutClick() {
+    navigate("/checkout");
+  }
 
   return (
     <div>
       <ViewCart />
       <h3>Total Cost: KR {total.toFixed(2)}</h3>
-      <Button onClick={() => handleCheckoutClick()} variant="primary">
-        CHECKOUT
+      <Button onClick={handleCheckoutClick} variant="primary">
+        To Checkout
       </Button>
     </div>
   );
