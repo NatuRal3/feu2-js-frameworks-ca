@@ -13,18 +13,25 @@ type CartItem = {
 };
 
 function Cart() {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchTotal() {
-      const cartItems: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+    const storedItems = localStorage.getItem("cart");
+    if (storedItems) {
+      setCartItems(JSON.parse(storedItems));
+    }
+  }, []);
+
+  useEffect(() => {
+    async function updateTotal() {
       const totalCost = await calculateTotal(cartItems);
       setTotal(totalCost);
     }
 
-    fetchTotal();
-  }, []);
+    updateTotal();
+  }, [cartItems]);
 
   function handleCheckoutClick() {
     navigate("/checkout");
@@ -32,7 +39,7 @@ function Cart() {
 
   return (
     <div>
-      <ViewCart />
+      <ViewCart cartItems={cartItems} setCartItems={setCartItems} />
       <h3>Total Cost: KR {total.toFixed(2)}</h3>
       <Button onClick={handleCheckoutClick} variant="primary">
         To Checkout

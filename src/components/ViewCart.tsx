@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
@@ -21,19 +21,18 @@ type CartItem = {
   counter: number;
 };
 
-function ViewCart() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+type ViewCartProps = {
+  cartItems: CartItem[];
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
+};
+
+function ViewCart({ cartItems, setCartItems }: ViewCartProps) {
   const [itemDetails, setItemDetails] = useState<{ [key: string]: Item }>({});
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedItems = localStorage.getItem("cart");
-    if (storedItems) {
-      const parsedItems: CartItem[] = JSON.parse(storedItems);
-      setCartItems(parsedItems);
-      fetchItemDetails(parsedItems);
-    }
-  }, []);
+    fetchItemDetails(cartItems);
+  }, [cartItems]);
 
   const fetchItemDetails = async (cartItems: CartItem[]) => {
     try {
@@ -80,7 +79,8 @@ function ViewCart() {
 
   function handleRemoveClick(cartItem: CartItem) {
     removeFromCart(cartItem.id);
-    setCartItems(cartItems.filter((item) => item.id !== cartItem.id));
+    const updatedItems = cartItems.filter((item) => item.id !== cartItem.id);
+    setCartItems(updatedItems);
   }
 
   function handleViewClick(id: string) {
@@ -93,49 +93,46 @@ function ViewCart() {
 
   return (
     <Row xs={1} md={3} className="g-4">
-      <div>
-        {cartItems.map((cartItem) => {
-          const item = itemDetails[cartItem.id];
-          return (
-            <Col key={cartItem.id}>
-              <Card style={{ width: "45rem" }}>
-                {item && (
-                  <>
-                    <Card.Body>
-                      <div className="flex space-evenly">
-                        <Card.Title>{item.title}</Card.Title>
+      {cartItems.map((cartItem) => {
+        const item = itemDetails[cartItem.id];
+        return (
+          <Col key={cartItem.id}>
+            <Card style={{ width: "45rem" }}>
+              {item && (
+                <>
+                  <Card.Body>
+                    <div className="flex space-evenly">
+                      <Card.Title>{item.title}</Card.Title>
+                      <Card.Text>In cart {cartItem.counter}</Card.Text>
+                      <Card.Text>Price {item.price}Kr</Card.Text>
+                      <Card.Text>Amount {(cartItem.counter * item.price).toFixed(2)}Kr</Card.Text>
+                    </div>
 
-                        <Card.Text>In cart {cartItem.counter}</Card.Text>
-                        <Card.Text>Price {item.price}Kr</Card.Text>
-                        <Card.Text>Amount {(cartItem.counter * item.price).toFixed(2)}Kr</Card.Text>
-                      </div>
+                    <div className="flex space-evenly " style={{ width: "20rem" }}>
+                      <Button onClick={() => handleAddToCart(item)} variant="primary">
+                        +
+                      </Button>
 
-                      <div className="flex space-evenly " style={{ width: "20rem" }}>
-                        <Button onClick={() => handleAddToCart(item)} variant="primary">
-                          +
-                        </Button>
-
-                        <Button
-                          onClick={() => handleDecreaseQuantityClick(cartItem)}
-                          variant="secondary"
-                        >
-                          -
-                        </Button>
-                        <Button onClick={() => handleRemoveClick(cartItem)} variant="danger">
-                          Remove
-                        </Button>
-                        <Button onClick={() => handleViewClick(cartItem.id)} variant="primary">
-                          View
-                        </Button>
-                      </div>
-                    </Card.Body>
-                  </>
-                )}
-              </Card>
-            </Col>
-          );
-        })}
-      </div>
+                      <Button
+                        onClick={() => handleDecreaseQuantityClick(cartItem)}
+                        variant="secondary"
+                      >
+                        -
+                      </Button>
+                      <Button onClick={() => handleRemoveClick(cartItem)} variant="danger">
+                        Remove
+                      </Button>
+                      <Button onClick={() => handleViewClick(cartItem.id)} variant="primary">
+                        View
+                      </Button>
+                    </div>
+                  </Card.Body>
+                </>
+              )}
+            </Card>
+          </Col>
+        );
+      })}
     </Row>
   );
 }
