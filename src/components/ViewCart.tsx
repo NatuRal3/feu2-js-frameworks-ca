@@ -92,39 +92,43 @@ function ViewCart({ cartItems, setCartItems }: ViewCartProps) {
   }
 
   return (
-    <Row xs={1} md={3} className="g-4">
+    <Row xs={1} md={3} className="g-4 flex column">
       {cartItems.map((cartItem) => {
         const item = itemDetails[cartItem.id];
         return (
           <Col key={cartItem.id}>
-            <Card style={{ width: "45rem" }}>
+            <Card className="cards-w">
               {item && (
                 <>
                   <Card.Body>
-                    <div className="flex space-evenly">
+                    <div className="flex frow space-evenly">
                       <Card.Title>{item.title}</Card.Title>
                       <Card.Text>In cart {cartItem.counter}</Card.Text>
                       <Card.Text>Price {item.price}Kr</Card.Text>
                       <Card.Text>Amount {(cartItem.counter * item.price).toFixed(2)}Kr</Card.Text>
                     </div>
 
-                    <div className="flex space-evenly " style={{ width: "20rem" }}>
-                      <Button onClick={() => handleAddToCart(item)} variant="primary">
-                        +
-                      </Button>
+                    <div className="flex space-evenly">
+                      <div>
+                        <Button onClick={() => handleAddToCart(item)} variant="primary">
+                          +
+                        </Button>
 
-                      <Button
-                        onClick={() => handleDecreaseQuantityClick(cartItem)}
-                        variant="secondary"
-                      >
-                        -
-                      </Button>
-                      <Button onClick={() => handleRemoveClick(cartItem)} variant="danger">
-                        Remove
-                      </Button>
-                      <Button onClick={() => handleViewClick(cartItem.id)} variant="primary">
-                        View
-                      </Button>
+                        <Button
+                          onClick={() => handleDecreaseQuantityClick(cartItem)}
+                          variant="secondary"
+                        >
+                          -
+                        </Button>
+                      </div>
+                      <div>
+                        <Button onClick={() => handleViewClick(cartItem.id)} variant="primary">
+                          View
+                        </Button>
+                        <Button onClick={() => handleRemoveClick(cartItem)} variant="danger">
+                          Remove
+                        </Button>
+                      </div>
                     </div>
                   </Card.Body>
                 </>

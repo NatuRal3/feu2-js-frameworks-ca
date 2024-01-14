@@ -10,11 +10,18 @@
 .column {
   flex-direction: column;
 }
-.row {
-  flex-direction: row;
+.frow {
+  // flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
+
+.flex-row {
+  // flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .allign {
   align-content: center;
 }

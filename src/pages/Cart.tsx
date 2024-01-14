@@ -34,16 +34,18 @@ function Cart() {
   }, [cartItems]);
 
   function handleCheckoutClick() {
-    navigate("/checkout");
+    navigate("/checkout", { state: { cartItems, total } });
   }
 
   return (
-    <div>
+    <div className="flex column center-items cart-cont">
       <ViewCart cartItems={cartItems} setCartItems={setCartItems} />
-      <h3>Total Cost: KR {total.toFixed(2)}</h3>
-      <Button onClick={handleCheckoutClick} variant="primary">
-        To Checkout
-      </Button>
+      <div className="column center-items cart-sum">
+        <h3>Total: {total.toFixed(2)} KR</h3>
+        <Button onClick={handleCheckoutClick} variant="primary">
+          To Checkout
+        </Button>
+      </div>
     </div>
   );
 }

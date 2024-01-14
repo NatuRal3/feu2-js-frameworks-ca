@@ -65,7 +65,7 @@ function Product() {
   return (
     <div>
       <div>
-        <img src={item.imageUrl} />
+        <img src={item.imageUrl} alt={item.title} />
       </div>
       <h1>{item.title}</h1>
       <div>
