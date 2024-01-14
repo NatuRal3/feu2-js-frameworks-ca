@@ -10,7 +10,6 @@ function Home() {
       try {
         const itemsList = await listItems();
         setItems(itemsList);
-        console.log(itemsList);
       } catch (error) {
         console.error("Error fetching items:", error);
       }
