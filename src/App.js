@@ -11,6 +11,7 @@ import Product from "./pages/Product.tsx";
 import Cart from "./pages/Cart.tsx";
 import Checkout from "./pages/Checkout.tsx";
 import Contact from "./pages/Contact.tsx";
+import Success from "./pages/Success";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/success" element={<Success />} />
         </Route>
       </Routes>
     </BrowserRouter>

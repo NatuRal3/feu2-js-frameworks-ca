@@ -1,8 +1,3 @@
-// ADD
-// REMOVE
-//SUCCESS
-// import React from "react";
-
 type Item = {
   id: string;
   imageUrl: string;
@@ -18,6 +13,11 @@ type CartItem = {
   counter: number;
 };
 
+const emitCartChange = () => {
+  window.dispatchEvent(new Event("storage"));
+};
+
+// ADD TO CART HANDLER
 export function addToCart(item: Item) {
   const cartJson = localStorage.getItem("cart");
   let cart: CartItem[] = cartJson ? JSON.parse(cartJson) : [];
@@ -28,10 +28,11 @@ export function addToCart(item: Item) {
   } else {
     cart.push({ id: item.id, title: item.title, counter: 1 });
   }
-
   localStorage.setItem("cart", JSON.stringify(cart));
+  emitCartChange();
 }
 
+// DECREASE FROM CART HANDLER
 export function decreaseItemQuantity(itemId: string) {
   const cartJson = localStorage.getItem("cart");
   let cart: CartItem[] = cartJson ? JSON.parse(cartJson) : [];
@@ -44,10 +45,11 @@ export function decreaseItemQuantity(itemId: string) {
       cart.splice(itemIndex, 1);
     }
   }
-
   localStorage.setItem("cart", JSON.stringify(cart));
+  emitCartChange();
 }
 
+// REMOVE ALL INSTANCES OF ITEM HANDLER
 export function removeFromCart(itemId: string) {
   const cartJson = localStorage.getItem("cart");
   let cart: CartItem[] = cartJson ? JSON.parse(cartJson) : [];
@@ -55,4 +57,5 @@ export function removeFromCart(itemId: string) {
   cart = cart.filter((cartItem) => cartItem.id !== itemId);
 
   localStorage.setItem("cart", JSON.stringify(cart));
+  emitCartChange();
 }

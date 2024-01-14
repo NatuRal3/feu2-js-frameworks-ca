@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useLocation } from "react-router-dom";
 import { getItem } from "../services/apiEngine";
+import { useNavigate } from "react-router-dom";
 
 type CheckoutFormData = {
   firstName: string;
@@ -62,6 +63,7 @@ function CheckoutForm() {
   const location = useLocation();
   const { cartItems } = location.state || { cartItems: [] };
   const [itemDetails, setItemDetails] = useState<{ [key: string]: Item }>({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (cartItems.length) {
@@ -93,6 +95,8 @@ function CheckoutForm() {
   const onSubmit: SubmitHandler<CheckoutFormData> = (data) => {
     console.log("Checkout Data:", data);
     localStorage.setItem("cart", JSON.stringify([])); // Clear cart
+
+    navigate("/success");
   };
 
   return (
@@ -105,8 +109,8 @@ function CheckoutForm() {
             const itemTotal = item ? (item.price * cartItem.counter).toFixed(2) : "Loading...";
             return (
               <li key={index}>
-                Quantity: {cartItem.counter} - {item?.title || "Loading..."} - Price:{" "}
-                {item?.price.toFixed(2)}Kr - Total: {itemTotal}Kr
+                {cartItem.counter}x {item?.title || "Loading..."} - Price: {item?.price.toFixed(2)}
+                Kr - Total: {itemTotal}Kr
               </li>
             );
           })}
@@ -124,7 +128,7 @@ function CheckoutForm() {
       </div>
       <div className="flex column items-center ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>We need your information</h2>
+          <h2>Shipping information</h2>
           <input {...register("firstName")} placeholder="First Name" />
           <p>{errors.firstName?.message}</p>
           <input {...register("age")} placeholder="Age" />
