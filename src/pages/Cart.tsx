@@ -40,7 +40,7 @@ function Cart() {
       <div className="column center-items cart-sum">
         <h3>Total: {total.toFixed(2)} KR</h3>
         <Button onClick={handleCheckoutClick} variant="primary">
-          To Checkout
+          Place Order
         </Button>
       </div>
     </div>

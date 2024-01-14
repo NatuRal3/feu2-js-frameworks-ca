@@ -1,9 +1,3 @@
-//Title
-//Description
-//Reviews IF there are any else (No review's given yet)
-//Discounted price if there is any. Calculate the discount (discountedPrice, Price DIFF)
-//Always use discountedPrice for showing price.
-
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getItem } from "../services/apiEngine";
@@ -80,15 +74,15 @@ function Product() {
         ) : (
           <div>{item.discountedPrice}</div>
         )}
+        <div>{item.description}</div>
         <div className="flex space-evenly">
           <Button onClick={() => addToCart(item)} variant="primary">
             Add to Cart
           </Button>
         </div>
-        <div>{item.description}</div>
       </div>
       <h2>Reviews</h2>
-      {getItemReviews()}
+      <div className="rev-con">{getItemReviews()}</div>
     </div>
   );
 }

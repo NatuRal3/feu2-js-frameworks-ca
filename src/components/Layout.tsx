@@ -1,8 +1,3 @@
-//Header
-//Nav
-//Cart with counter and button to view content
-
-//Footer
 import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Container from "react-bootstrap/Container";
@@ -21,19 +16,16 @@ function Header() {
 
   const updateCartItemCount = () => {
     const cartJson = localStorage.getItem("cart");
-    // Ensure cart is declared as an array of CartItem
     const cart: CartItem[] = cartJson ? JSON.parse(cartJson) : [];
     const itemCount = cart.reduce((total: number, item: CartItem) => total + item.counter, 0);
     setCartItemCount(itemCount);
   };
 
-  // Effect to update the cart item count
   useEffect(() => {
     updateCartItemCount();
-    // Adding an event listener to update the cart count when local storage changes
+
     window.addEventListener("storage", updateCartItemCount);
 
-    // Cleanup
     return () => {
       window.removeEventListener("storage", updateCartItemCount);
     };
@@ -49,7 +41,7 @@ function Header() {
             <Nav.Link href="/home">HOME</Nav.Link>
             <Nav.Link href="/contact">CONTACT</Nav.Link>
             <Nav.Link href="/cart">
-              <FaShoppingCart />
+              <FaShoppingCart size={23} />
               {cartItemCount > 0 && <span className="cart-counter">{cartItemCount}</span>}
             </Nav.Link>
           </Nav>

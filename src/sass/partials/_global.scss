@@ -11,20 +11,17 @@ body {
   margin-left: 0px;
 }
 
-html {
-  scroll-behavior: smooth;
-  scrollbar-color: rgb(45, 131, 102) #1b1b1b;
-}
 ul {
   list-style: none;
 }
 
 .cart-counter {
-  margin-left: -8px;
-  color: rgb(234, 120, 120);
-  background-color: rgb(18, 18, 18);
+  margin-left: -3px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(95, 95, 95);
   border-radius: 1rem;
-  font-size: small;
+  font-size: 1rem;
+  padding: 0.25em 0.5em; /* Adjust the top/bottom and left/right padding as needed */
 }
 
 .layout-container {
@@ -35,4 +32,8 @@ ul {
   .main-content {
     flex-grow: 1;
   }
+}
+
+Button {
+  margin: 5px;
 }

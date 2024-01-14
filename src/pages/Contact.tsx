@@ -1,12 +1,7 @@
-//Subject (Minimum number of characters is 3, required)
-//Email (Must be a valid email address, required)
-//Body (Minimum number of characters is 3, required)
-
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 
 type ContactFormData = {
   name: string;
@@ -34,19 +29,21 @@ const contactSchema = yup
   .required();
 
 function Contact() {
-  const navigate = useNavigate();
+  const [messageSent, setMessageSent] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ContactFormData>({
     resolver: yupResolver(contactSchema),
   });
 
   const onSubmit: SubmitHandler<ContactFormData> = (data) => {
     console.log("Contact Data:", data);
-    navigate("/success"); // Adjust as needed
+    setMessageSent(true);
+    reset();
   };
 
   return (
@@ -69,6 +66,7 @@ function Contact() {
 
           <input type="submit" value="Send Message" />
         </form>
+        {messageSent && <p>Message sent!</p>}
       </div>
     </>
   );

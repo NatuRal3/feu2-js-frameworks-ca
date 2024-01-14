@@ -22,8 +22,8 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <div>HOME</div>
+    <div className="flex column items-center home-cont">
+      <h1>PRODUCTS</h1>
       <ItemCards items={items} />
     </div>
   );
