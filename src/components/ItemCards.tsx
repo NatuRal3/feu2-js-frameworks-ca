@@ -43,14 +43,18 @@ function ItemCards({ items }: ItemCardsProps) {
               <Card.Text>
                 {item.discountedPrice < item.price ? (
                   <div className="flex coloumn space-evenly">
-                    <p className="price-old">{item.price}</p>{" "}
+                    <p className="price-old">{item.price}kr</p>{" "}
                     <div className="flex coloumn">
-                      <p className="price-discount">{item.discountedPrice}</p>
-                      <div>{campaignPriceCalculator(item.price, item.discountedPrice)}</div>
+                      <p className="price-discount">{item.discountedPrice}kr</p>
+                      <div className="discount-percent">
+                        {campaignPriceCalculator(item.price, item.discountedPrice)}
+                      </div>
                     </div>
                   </div>
                 ) : (
-                  <p>{item.discountedPrice}</p>
+                  <div className="flex center-items ">
+                    <p>{item.discountedPrice} kr</p>
+                  </div>
                 )}
               </Card.Text>
               <div className="flex space-evenly">
