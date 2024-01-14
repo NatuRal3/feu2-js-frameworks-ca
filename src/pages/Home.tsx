@@ -1,6 +1,3 @@
-// List all products
-// Look ahead search filter
-// Click on product in search to go to it
 import React, { useEffect, useState } from "react";
 import { listItems } from "../services/apiEngine";
 import ItemCards from "../components/ItemCards";

@@ -59,20 +59,24 @@ function Product() {
   return (
     <div>
       <div>
-        <img src={item.imageUrl} alt={item.title} />
+        <img className="product-img" src={item.imageUrl} alt={item.title} />
       </div>
-      <h1>{item.title}</h1>
+      <h1 className="flex center-items">{item.title}</h1>
       <div>
         {item.discountedPrice < item.price ? (
           <div className="flex coloumn space-evenly">
-            <div className="price-old">Kr {item.price}</div>{" "}
+            <div className="price-old">{item.price}kr</div>{" "}
             <div className="flex coloumn">
-              <div className="price-discount">Kr {item.discountedPrice}</div>
-              <div>{campaignPriceCalculator(item.price, item.discountedPrice)}</div>
+              <div className="price-discount"> {item.discountedPrice}kr</div>
+              <div className="discount-percent">
+                {campaignPriceCalculator(item.price, item.discountedPrice)}
+              </div>
             </div>
           </div>
         ) : (
-          <div>{item.discountedPrice}</div>
+          <div className="flex center-items ">
+            <p>{item.discountedPrice} kr</p>
+          </div>
         )}
         <div>{item.description}</div>
         <div className="flex space-evenly">
