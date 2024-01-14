@@ -1,6 +1,3 @@
-// List of items
-// Button to checout - > Checkout success checkout.tsx
-
 import React, { useState, useEffect } from "react";
 import ViewCart from "../components/ViewCart";
 import { useNavigate } from "react-router-dom";
