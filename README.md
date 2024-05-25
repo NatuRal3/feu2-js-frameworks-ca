@@ -63,6 +63,7 @@ npm install
 - `npm run build`: Builds the app for production to the `build` folder.
 - `npm test`: Launches the test runner in the interactive watch mode.
 - `npm run eject`: Removes the single build dependency from your project.
+  
  **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
 ## Contributing
@@ -72,8 +73,7 @@ npm install
 3. **Make your changes and commit them**: git commit -am 'Describe your changes'
 4. **Push to your fork and submit a pull request**.
 
-
 ## Contact
 
-[My Github]([www.twitter.com](https://github.com/NatuRal3))
-[My LinkedIn]([www.linkedin.com](https://www.linkedin.com/in/mariusschei/))
+[My Github](https://github.com/NatuRal3)
+[My LinkedIn](https://www.linkedin.com/in/mariusschei/)
