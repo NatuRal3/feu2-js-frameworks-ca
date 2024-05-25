@@ -49,7 +49,7 @@ How to get started
 
 1. Clone the repo:
 ```bash
-git clone https://github.com/NatuRal3/feu2-js-frameworks-ca
+git clone https://github.com/NatuRal3/feu2-js-frameworks-ca.git
 ```
 
 2. Install the dependencies:
@@ -68,7 +68,7 @@ npm install
 
 ## Contributing
 
-1. **Fork and clone the repository**: git clone https://github.com/NatuRal3/feu2-js-frameworks-ca
+1. **Fork and clone the repository**: git clone https://github.com/NatuRal3/feu2-js-frameworks-ca.git
 2. **Create a new branch**: git checkout -b your-branch-name
 3. **Make your changes and commit them**: git commit -am 'Describe your changes'
 4. **Push to your fork and submit a pull request**.
